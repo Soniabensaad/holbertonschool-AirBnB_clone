@@ -3,7 +3,7 @@ import unittest
 from models.base_model import BaseModel
 class testBase_AirBnb(unittest.TestCase):
 
-    def test_save(self):
+    def test_base_save(self):
         my_model = BaseModel()
         self.aassertEqual(my_model.save(), my_model.save())
 
