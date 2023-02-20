@@ -17,14 +17,14 @@ class BaseModel:
 
 
     def __str__(self):
-        return f"[{BaseModel}] ({self.id}) {self.__dict__}"
+        return f"[BaseModel] ({self.id}) {self.__dict__}"
 
     def save(self):
         self.updated_at = datetime.datetime.now()
 
     def to_dict(self):
         new_dict = self.__dict__.copy()
-        new_dict["class"] = self.__class__.__name__
+        new_dict["__class__"] = __class__.__name__
         new_dict["created_at"] = str(datetime.datetime.now())
         new_dict["updated_at"] = str(datetime.datetime.now())
         return new_dict
