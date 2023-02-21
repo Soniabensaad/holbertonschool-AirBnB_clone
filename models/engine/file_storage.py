@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-from models.base_model import BaseModel
 import json
-class FileStorage:
+import os
+from models.base_model import BaseModel
+
+class FileStorage():
     __file_path = "file.json"
     __objects = {}
 
@@ -10,29 +12,31 @@ class FileStorage:
         """
         pass
     def all(self):
-        return  FileStorage.__objects
+        return  self.__objects
     def new(self, obj):
         obj_name = __class__.__name__
         obj_id = obj.id
         key = f"{obj_name}.{obj_id}"
-        FileStorage.__objects[key] = obj
+        self.__objects[key] = obj
 
     def save(self):
         dictionnary = {}
-        for key, value in FileStorage.__objects.items():
+        for key, value in self.__objects.items():
             dictionnary.update({key: value.to_dict()})
         json_f = json.dumps(dictionnary)
-        with open(FileStorage.__file_path, "w", encoding="utf-8") as f:
+        with open(self.__file_path, "w", encoding="utf-8") as f:
             f.write(json_f)
 
     def reload(self):
         try:
-            with open(FileStorage.__file_path, "r", encoding='utf-8') as f:
+            with open(self.__file_path, "r", encoding='utf-8') as f:
                 data = f.read()
-        except Exception:
-            return
-        objects = eval(data)
-        for (key, value) in objects.items():
-            objects[key] = eval(key.split(".")[0] + "(**value)")
-        FileStorage.__objects = objects
+                for key, value in data.items():
+                    for key, value in data.items():
+                        class_name = value['__class__']
+                        del value['__class__']
+                        obj = eval(class_name)(**value)
+                        self.__objects[key] = obj
+        except BaseException:
+            pass
 
