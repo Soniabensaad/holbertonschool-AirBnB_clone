@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import uuid
 from datetime import datetime
+import models 
 time_format = "%Y-%m-%dT%H:%M:%S.%f"
 """Defines a class Base"""
 class BaseModel:
@@ -18,6 +19,7 @@ class BaseModel:
                 self.id = str(uuid.uuid4())
                 self.created_at = datetime.now()
                 self.updated_at = self.created_at
+                models.storage.new(self)
 
 
 
@@ -26,6 +28,7 @@ class BaseModel:
 
     def save(self):
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         new_dict = self.__dict__.copy()
