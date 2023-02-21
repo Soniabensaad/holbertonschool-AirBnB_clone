@@ -10,12 +10,12 @@ class FileStorage:
         """
         pass
     def all(self):
-        return  self.__objects
+        return  FileStorage.__objects
     def new(self, obj):
         obj_name = __class__.__name__
         obj_id = obj.id
         key = f"{obj_name}.{obj_id}"
-        self.__objects[key] = obj
+        FileStorage.__objects[key] = obj
 
     def save(self):
         dictionnary = {}
@@ -27,13 +27,12 @@ class FileStorage:
 
     def reload(self):
         try:
-            with open(FileStorage.__file_path, "r") as f:
-                data = json.load(f)
-                for key, value in data.items():
-                    cls_name = value["__class__"]
-                    cls = globals()[cls_name]
-                    obj = cls(**value)
-                    FileStorage.__objects[key] = obj
-        except FileNotFoundError:
-            pass
+            with open(FileStorage.__file_path, "r", encoding='utf-8') as f:
+                data = f.read()
+        except Exception:
+            return
+        objects = eval(data)
+        for (key, value) in objects.items():
+            objects[key] = eval(key.split(".")[0] + "(**value)")
+        FileStorage.__objects = objects
 

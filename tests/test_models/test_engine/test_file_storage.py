@@ -5,8 +5,7 @@ from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models import storage
 import json
-import os
-
+FileStorage = FileStorage.FileStorage
 classes = {"BaseModel": BaseModel}
 
 
