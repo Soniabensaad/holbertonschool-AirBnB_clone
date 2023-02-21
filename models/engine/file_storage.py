@@ -10,12 +10,12 @@ class FileStorage:
         """
         pass
     def all(self):
-        return  self.__objects
+        return  FileStorage.__objects
     def new(self, obj):
         obj_name = __class__.__name__
         obj_id = obj.id
         key = f"{obj_name}.{obj_id}"
-        self.__objects[key] = obj
+        FileStorage.__objects[key] = obj
 
     def save(self):
         dictionnary = {}
