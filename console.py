@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""HBNBCommand Class.
+Custom command line for AirBnB project.
+"""
 import cmd
 
 class HBNBCommand(cmd.Cmd):
