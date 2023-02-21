@@ -29,12 +29,11 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path, "r") as f:
                 data = json.load(f)
-                new_dict = {}
                 for key, value in data.items():
-                    class_name = key.split(".")[0]
-                    obj = eval(class_name)(**value)
-                    new_dict[key] = obj
-                    FileStorage.__objects[key] = new_dict
+                    cls_name = value["__class__"]
+                    cls = globals()[cls_name]
+                    obj = cls(**value)
+                    FileStorage.__objects[key] = obj
         except FileNotFoundError:
             pass
 
