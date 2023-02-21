@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import cmd
-from models.base_model import BaseModel
-from models import FileStorage
+
 class HBNBCommand(cmd.Cmd):
     """Defines methods and attributes of the console"""
 
