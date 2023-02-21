@@ -26,15 +26,14 @@ class FileStorage:
             f.write(json_f)
 
     def reload(self):
-      my_dict = {}
-
-      json_file = ""
       try:
-            with open(FileStorage.__file_path, "r") as my_file:
-                json_file = json.loads(my_file.read())
-                for key in json_file:
-                    FileStorage.__objects[key] = my_dict[json_file[key]['__clas\
-s__']](**json_file[key])
-      except:
+            with open(FileStorage.__file_path, "r") as f:
+                data = json.load(f)
+                for key, value in data.items():
+                    cls_name = value["__class__"]
+                    cls = globals()[cls_name]
+                    obj = cls(**value)
+                    FileStorage.__objects[key] = obj
+      except FileNotFoundError:
             pass
 
