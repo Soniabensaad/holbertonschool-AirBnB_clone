@@ -1,7 +1,7 @@
 import unittest
 from models.state import State
 from models.base_model import BaseModel
-class TestUser(unittest.TestCase):
+class TestState(unittest.TestCase):
     """tests for state class"""
     def test_state(self):
         """test for name state"""

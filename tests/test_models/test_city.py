@@ -1,7 +1,7 @@
 import unittest
 from models.city import City
 from models.base_model import BaseModel
-class TestUser(unittest.TestCase):
+class TestCity(unittest.TestCase):
     """tests for city class"""
     def test_city_id(self):
         """test id  city"""
