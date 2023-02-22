@@ -57,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
             return
         
         if args[0] not in self.models:
-            print("** class doesn't exist **")
+            print("** class name missing **")
             return
         if not self.id_verification:
             return
