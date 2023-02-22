@@ -52,16 +52,25 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, inp):
         """Deletes an instance based on the class name and id"""
-        args = inp.split()
+        args = inp.split(" ")
         if not self.class_verification:
+            return
+        
+        if args[0] not in self.models:
+            print("** class doesn't exist **")
             return
         if not self.id_verification:
             return
-        objects  = models.storage.all()
-        string_r = str(args[0]) + '.' + str(args[1])
-        models.storage.delete(objects[string_r])
-        models.storage.save()
-        
+        args = inp.split(" ")
+        x = models.storage.all()
+        for i in x.keys():
+            j = i.split(".")
+            if j[1] == args[1] and j[0] == args[0]:
+                x.pop(i)
+                models.storage.save()
+                return
+        print("** no instance found **")
+
     @classmethod
     def class_verification(cls, args):
         if len(args) == 0:
