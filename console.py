@@ -107,7 +107,7 @@ class HBNBCommand(cmd.Cmd):
                 if args[0] in key:
                     result.append(str(value))
         else:
-            print("** class doesn't exist **")
+            print("** class name missing **")
         print(result)
 
     def do_update(self, line):
