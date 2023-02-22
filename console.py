@@ -6,13 +6,14 @@ import cmd
 import models
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
 from models import storage
 import shlex
 class HBNBCommand(cmd.Cmd):
     """Defines methods and attributes of the console"""
 
     prompt = "(hbnb)"
-    models = ["BaseModel", "User"]
+    models = ["BaseModel", "User", "State"]
 
     
     def do_quit(self, arg):
