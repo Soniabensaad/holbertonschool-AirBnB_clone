@@ -38,3 +38,12 @@ class FileStorage:
                     self.__objects[key] = obj
         except BaseException:
             pass
+
+    def delete(self, obj):
+        try:
+            key = obj.__class__.__name__ + '.' + str(obj.id)
+            del self.__objects[key]
+            return True
+        except Exception:
+            return False
+
