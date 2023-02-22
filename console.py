@@ -5,13 +5,14 @@ Custom command line for AirBnB project.
 import cmd
 import models
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 import shlex
 class HBNBCommand(cmd.Cmd):
     """Defines methods and attributes of the console"""
 
     prompt = "(hbnb)"
-    models = ["BaseModel"]
+    models = ["BaseModel", "User"]
 
     
     def do_quit(self, arg):
