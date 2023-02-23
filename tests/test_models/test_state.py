@@ -7,3 +7,5 @@ class TestState(unittest.TestCase):
         """test for name state"""
         my_state1 = State()
         my_state1.name = "United State of America"
+        my_state1.save()
+        self.assertEqual(str(my_state1), str(my_state1))

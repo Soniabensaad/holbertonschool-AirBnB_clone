@@ -13,4 +13,4 @@ class TestUser(unittest.TestCase):
         my_user1.email = "hiproject1@mail.com"
         my_user1.password = "project"
         my_user1.save()
-        self.assertEqual(my_user1, my_user1)
+        self.assertEqual(str(my_user1), str(my_user1))

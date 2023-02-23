@@ -16,3 +16,5 @@ class TestState(unittest.TestCase):
         my_place1.latitude = 42.34
         my_place1.longitude = -71.12
         my_place1.amenity_ids = ["af9b4cbd-2ce1-4e6e-8259-f578097dd15f", "9bf17966-b092-4996-bd33-26a5353cccb4"]
+        my_place1.save()
+        self.assertEqual(my_place1, my_place1)
