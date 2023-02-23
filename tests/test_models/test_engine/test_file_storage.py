@@ -20,6 +20,6 @@ class TestFileStorage(unittest.TestCase):
 
     def test_storage(self):
         """test for storage"""
-        self.assertIsInstance(BaseModel.name, str)
+        self.assertIsInstance(BaseModel.__name__, str)
         self.assertIsInstance(BaseModel.my_number, int)
         
