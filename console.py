@@ -19,7 +19,7 @@ class HBNBCommand(cmd.Cmd):
     """Defines methods and attributes of the console"""
     prompt = "(hbnb)"
     models = ["BaseModel", "User", "State",
-               "Amenity", "City", "Review", "Place"]
+                "Amenity", "City", "Review", "Place"]
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -54,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
         if not self.id_verification(args):
             return
         string_r = str(args[0]) + '.' + str(args[1])
-        objects  = models.storage.all()
+        objects = models.storage.all()
         print(objects[string_r])
 
     def do_destroy(self, inp):
@@ -62,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
         args = inp.split(" ")
         if not self.class_verification:
             return
-        
+
         if args[0] not in self.models:
             print("** class name missing **")
             return
@@ -83,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return False
-        if args[0]  not in cls.models:
+        if args[0] not in cls.models:
             print("** class doesn't exist **")
             return False
         return True
@@ -93,24 +93,24 @@ class HBNBCommand(cmd.Cmd):
         if len(args) < 2:
             print("** instance id missing **")
             return False
-        objects  = models.storage.all()
+        objects = models.storage.all()
         string = str(args[0]) + '.' + str(args[1])
         if string not in objects.keys():
             print("** no instance found **")
             return False
         return True
-    
+
     def do_all(self, inp):
         """Prints all string representation of
         all instances based or not on the class name"""
         args = inp.split()
         result = []
-        objects  = models.storage.all()
+        objects = models.storage.all()
         if len(args) == 0:
             for value in objects.values():
                 result.append(str(value))
         elif args[0] in self.models:
-            for key , value in objects.items():
+            for key, value in objects.items():
                 if args[0] in key:
                     result.append(str(value))
         else:
@@ -140,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
                 elif len(args) == 3:
                     print("** value missing **")
                 else:
-                    setattr(value, args[2] , args[3])
+                    setattr(value, args[2], args[3])
                     models.storage.save()
                 return
 
