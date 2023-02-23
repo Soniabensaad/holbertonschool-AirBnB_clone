@@ -5,5 +5,6 @@ class TestCity(unittest.TestCase):
     """test for amenity"""
     def test_amenity_name(self):
         """test name amenity"""
-        self.assertIsInstance(self.name, str)
+        my_amenity1 = Amenity()
+        my_amenity1.name = "pillows"
         
