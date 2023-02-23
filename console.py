@@ -19,7 +19,8 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """Defines methods and attributes of the console"""
     prompt = "(hbnb)"
-    models = {"BaseModel": BaseModel(), 'FileStorage': FileStorage(), "User": User(),
+    models = {"BaseModel": BaseModel(),
+               'FileStorage': FileStorage(), "User": User(),
                'Amenity': Amenity(), 'City': City(), 'Place': Place(),
                'Review': Review(), 'State': State()}
 
