@@ -4,6 +4,7 @@ This module contains a class that inherits from the BaseModel class."""
 
 from models.base_model import BaseModel
 
+
 class State(BaseModel):
     """
     State (models/state.py):
