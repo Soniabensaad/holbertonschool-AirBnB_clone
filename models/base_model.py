@@ -1,4 +1,4 @@
-
+#!/usr/bin/python3
 import uuid
 from datetime import datetime
 import models 
@@ -8,6 +8,7 @@ class BaseModel:
     """ defines all common attributes/
     methods for other classes"""
     def __init__(self, *args, **kwargs):
+            """use *args, **kwargs arguments for the constructor of a BaseModel"""
             if kwargs:
                  for key, value in kwargs.items():
                       if key != __class__:

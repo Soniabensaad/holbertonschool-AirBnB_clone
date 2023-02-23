@@ -2,7 +2,7 @@
 import unittest
 from models.base_model import BaseModel
 class testBase_AirBnb(unittest.TestCase):
-
+    """all test for basemodel"""
 
     def test_base_to_dict(self):
         my_model = BaseModel()
@@ -14,6 +14,7 @@ class testBase_AirBnb(unittest.TestCase):
         self.assertEqual(
             (my_model_json), "{'my_number': 89, 'name': 'My First Model', 'updated_at': '2023-02-20 14:24:01.871493', 'id': '853d2737-0bc7-4dbe-a403-b3934a3de25c', 'created_at': '2023-02-20 14:24:01.871499', '__class__': 'BaseModel'}")
     def test_assert(self):
+        """all attributes"""
         my_model = BaseModel()
         self.assertIsInstance(BaseModel.name, str)
         self.assertIsInstance(BaseModel.my_number, int)
