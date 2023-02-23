@@ -18,17 +18,19 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """Defines methods and attributes of the console"""
     prompt = "(hbnb)"
-    models = ["BaseModel", "User", "State", "Amenity", "City", "Review", "Place"]
+    models = ["BaseModel", "User", "State",
+               "Amenity", "City", "Review", "Place"]
+
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
-    
+
     def do_EOF(self, arg):
         """Exits the program when user calls EOF"""
         return True
-    
+
     def emptyline(self):
-        #Overrides the dafult repeating of previous command
+        """Overrides the dafult repeating of previous command"""
         pass
 
     def do_create(self, inp):
@@ -42,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
             return
         instance.save()
         print(instance.id)
-    
+
     def do_show(self, inp):
         """Prints the string representation of an instance
           based on the class name and id"""
