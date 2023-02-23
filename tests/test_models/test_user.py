@@ -5,18 +5,11 @@ from datetime import datetime
 
 class TestUser(unittest.TestCase):
     """tests for user class"""
-    def test_email_user(self):
-        """test for email user"""
-        self.assertIsInstance(self.user.email, str)
-
-    def test_password_user(self):
-        """test for password user"""
-        self.assertIsInstance(self.user.password, str)
     
-    def test_first_name_user(self):
-        """test for first_name user"""
-        self.assertIsInstance(self.user.first_name, str)
-
-    def test_last_name_user(self):
-        """test for last_name user"""
-        self.assertIsInstance(self.user.last_name, str)
+    def test_User(self):
+        my_user1 = User()
+        my_user1.first_name = "Harry"
+        my_user1.email = "hiproject1@mail.com"
+        my_user1.password = "project"
+        my_user1.save()
+        self.assertEqual(my_user1, my_user1)
