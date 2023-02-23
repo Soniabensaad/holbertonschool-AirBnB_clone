@@ -9,6 +9,7 @@ class TestUser(unittest.TestCase):
     def test_User(self):
         my_user1 = User()
         my_user1.first_name = "Harry"
+        my_user1.last_name = "Jackson"
         my_user1.email = "hiproject1@mail.com"
         my_user1.password = "project"
         my_user1.save()
