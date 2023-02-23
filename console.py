@@ -20,8 +20,8 @@ class HBNBCommand(cmd.Cmd):
     """Defines methods and attributes of the console"""
     prompt = "(hbnb)"
     models = {"BaseModel": BaseModel(), 'FileStorage': FileStorage(), "User": User(),
-       'Amenity': Amenity(), 'City': City(), 'Place': Place(),
-       'Review': Review(), 'State': State()}
+               'Amenity': Amenity(), 'City': City(), 'Place': Place(),
+               'Review': Review(), 'State': State()}
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
