@@ -18,8 +18,9 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """Defines methods and attributes of the console"""
     prompt = "(hbnb)"
-    models = ["BaseModel", "User", "State",
-                "Amenity", "City", "Review", "Place"]
+    models = [
+        "BaseModel", "User", "State",
+            "Amenity", "City", "Review", "Place"]
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
