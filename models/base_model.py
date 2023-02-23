@@ -38,5 +38,3 @@ class BaseModel:
         new_dict["created_at"] = self.created_at.strftime(time_format)
         new_dict["updated_at"] = self.updated_at.strftime(time_format)
         return new_dict
-
-
