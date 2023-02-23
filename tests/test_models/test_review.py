@@ -11,3 +11,10 @@ class TestReview(unittest.TestCase):
         my_review1.text = "great place"
         my_review1.save()
         self.assertEqual(str(my_review1), str(my_review1))
+
+    def test_review_attributes(self):
+        """attributes"""
+        self.assertIsInstance(Review.place_id, str)
+        self.assertIsInstance(Review.user_id, str)
+        self.assertIsInstance(Review.text, str)
+        

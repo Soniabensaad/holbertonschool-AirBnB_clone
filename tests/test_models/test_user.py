@@ -7,6 +7,7 @@ class TestUser(unittest.TestCase):
     """tests for user class"""
     
     def test_User(self):
+        """examples"""
         my_user1 = User()
         my_user1.first_name = "Harry"
         my_user1.last_name = "Jackson"
@@ -14,3 +15,10 @@ class TestUser(unittest.TestCase):
         my_user1.password = "project"
         my_user1.save()
         self.assertEqual(str(my_user1), str(my_user1))
+
+    def test_user_attributes(self):
+        """attributes"""
+        self.assertIsInstance(User.first_name, str)
+        self.assertIsInstance(User.last_name, str)
+        self.assertIsInstance(User.email, str)
+        self.assertIsInstance(User.password, str)

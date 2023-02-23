@@ -11,4 +11,8 @@ class TestCity(unittest.TestCase):
         my_city1.save()
         self.assertEqual(str(my_city1), str(my_city1))
         
-
+    def test_city_attributes(self):
+        """attributes"""
+        self.assertIsInstance(City.name, str)
+        self.assertIsInstance(City.state_id, str)
+       

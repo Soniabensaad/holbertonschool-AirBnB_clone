@@ -17,3 +17,8 @@ class TestFileStorage(unittest.TestCase):
         my_model.my_number = 89
         my_model.save()
         self.assertEqual(str(my_model), str(my_model))
+
+    def test_storage(self):
+        """test for storage"""
+        self.assertIsInstance(BaseModel.name, str)
+        

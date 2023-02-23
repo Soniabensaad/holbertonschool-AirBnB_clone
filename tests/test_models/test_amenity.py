@@ -7,4 +7,8 @@ class TestCity(unittest.TestCase):
         """test name amenity"""
         my_amenity1 = Amenity()
         my_amenity1.name = "pillows"
+
+    def test_amenity(self):
+        """test for str"""
+        self.assertIsInstance(Amenity.id, str)
         
