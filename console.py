@@ -13,13 +13,12 @@ from models.place import Place
 from models.review import Review
 from models import storage
 import shlex
+
+
 class HBNBCommand(cmd.Cmd):
     """Defines methods and attributes of the console"""
-
     prompt = "(hbnb)"
-    models = ["BaseModel", "User", "State"]
-
-    
+    models = ["BaseModel", "User", "State", "Amenity", "City", "Review", "Place"]
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
@@ -139,7 +138,7 @@ class HBNBCommand(cmd.Cmd):
                 elif len(args) == 3:
                     print("** value missing **")
                 else:
-                    setattr(value, args[2], args[3])
+                    setattr(value, args[2] , args[3])
                     models.storage.save()
                 return
 
@@ -153,8 +152,5 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return False
         return True
-
-
-
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
