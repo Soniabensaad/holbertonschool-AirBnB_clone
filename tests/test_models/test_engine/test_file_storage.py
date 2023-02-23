@@ -2,11 +2,8 @@
 """ Defines a class TestFileStorage for FileStorage module. """
 import unittest
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
 from models import storage
-import json
-FileStorage = FileStorage.FileStorage
-classes = {"BaseModel": BaseModel}
+
 
 
 class TestFileStorage(unittest.TestCase):
@@ -19,4 +16,4 @@ class TestFileStorage(unittest.TestCase):
         my_model.name = "My First Model"
         my_model.my_number = 89
         my_model.save()
-        self.assertEqual(my_model, my_model)
+        self.assertEqual(str(my_model), str(my_model))
