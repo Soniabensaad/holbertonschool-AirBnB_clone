@@ -4,6 +4,7 @@ Custom command line for AirBnB project.
 """
 import cmd
 import models
+import shlex
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models.user import User
@@ -13,7 +14,6 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 from models import storage
-import shlex
 
 
 class HBNBCommand(cmd.Cmd):
@@ -51,35 +51,54 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, inp):
         """Prints the string representation of an instance
           based on the class name and id"""
-        args = inp.split()
-        if not self.class_verification(args):
-            return
-        if not self.id_verification(args):
-            return
-        string_r = str(args[0]) + '.' + str(args[1])
-        objects = models.storage.all()
-        print(objects[string_r])
+        try:
+            if not inp:
+                raise SyntaxError()
+            args = inp.split(" ")
+            if args[0] not in self.models:
+                raise NameError()
+            if len(args) < 2:
+                raise IndexError()
+            objects = models.storage.all()
+            key = args[0] + '.' + args[1]
+            if key in objects:
+                print(objects[key])
+            else:
+                raise KeyError()
+        except SyntaxError:
+            print("** class name missing **")
+        except NameError:
+            print("** class doesn't exist **")
+        except IndexError:
+            print("** instance id missing **")
+        except KeyError:
+            print("** no instance found **")
 
     def do_destroy(self, inp):
         """Deletes an instance based on the class name and id"""
-        args = inp.split(" ")
-        if not self.class_verification:
-            return
-
-        if args[0] not in self.models:
-            print("** class name missing **")
-            return
-        if not self.id_verification:
-            return
-        args = inp.split(" ")
-        x = models.storage.all()
-        for i in x.keys():
-            j = i.split(".")
-            if j[1] == args[1] and j[0] == args[0]:
-                x.pop(i)
+        try:
+            if not inp:
+                raise SyntaxError()
+            args = inp.split(" ")
+            if args[0] not in self.models:
+                raise NameError()
+            if len(args) < 2:
+                raise IndexError()
+            objects = models.storage.all()
+            key = args[0] + '.' + args[1]
+            if key in objects:
+                del objects[key]
                 models.storage.save()
-                return
-        print("** no instance found **")
+            else:
+                raise KeyError()
+        except SyntaxError:
+            print("** class name missing **")
+        except NameError:
+            print("** class doesn't exist **")
+        except IndexError:
+            print("** instance id missing **")
+        except KeyError:
+            print("** no instance found **")
 
     @classmethod
     def class_verification(cls, args):

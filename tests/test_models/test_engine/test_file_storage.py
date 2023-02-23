@@ -5,7 +5,6 @@ from models.base_model import BaseModel
 from models import storage
 
 
-
 class TestFileStorage(unittest.TestCase):
     """Test the FileStorage class"""
     def test_all_filestorage(self):
