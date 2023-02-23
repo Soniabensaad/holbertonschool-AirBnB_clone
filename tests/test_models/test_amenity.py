@@ -10,5 +10,5 @@ class TestCity(unittest.TestCase):
 
     def test_amenity(self):
         """test for str"""
-        self.assertIsInstance(Amenity.id, str)
+        self.assertIsInstance(Amenity.name, str)
         
