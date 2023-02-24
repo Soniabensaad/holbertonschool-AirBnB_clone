@@ -12,3 +12,6 @@ class State(BaseModel):
            name: string - empty string
     """
     name = ""
+
+    def __str__(self):
+        return (f"[State] ({self.id}) {self.__dict__}")

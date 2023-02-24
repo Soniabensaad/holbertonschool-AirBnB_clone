@@ -11,3 +11,6 @@ class City(BaseModel):
         name: string - empty string"""
     state_id = ""
     name = ""
+
+    def __str__(self):
+        return (f"[City] ({self.id}) {self.__dict__}")
