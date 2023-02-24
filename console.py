@@ -4,7 +4,6 @@ Custom command line for AirBnB project.
 """
 import cmd
 import models
-import shlex
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models.user import User
@@ -19,10 +18,9 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """Defines methods and attributes of the console"""
     prompt = "(hbnb)"
-    models = {"BaseModel": BaseModel(),
-              'FileStorage': FileStorage(), "User": User(),
-              'Amenity': Amenity(), 'City': City(), 'Place': Place(),
-              'Review': Review(), 'State': State()}
+    models = ["BaseModel", "User",
+              "Amenity", "City", "Place",
+              "Review", "State"]
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -36,96 +34,67 @@ class HBNBCommand(cmd.Cmd):
         """Overrides the dafult repeating of previous command"""
         pass
 
-    def do_create(self, inp):
+    def do_create(self, arg):
         """Creates a new instance of BaseModel,
         saves it (to the JSON file) and prints the id"""
-        args = inp.split()
-        if not self.class_verification(args):
-            return
-        instance = eval(str(args[0]) + "()")
-        if not isinstance(instance, BaseModel):
-            return
+        if len(arg) == 0:
+            print("** class name missing **")
+        if arg not in self.models:
+            print("** class doesn't exist **")
+        if arg == "User":
+            instance = User()
+        if arg == "City":
+            instance = City()
+        if arg == "Review":
+            instance = Review()
+        if arg == "Amenity":
+            instance = Amenity()
+        if arg == "Place":
+            instance = Place()
+        if arg == "State":
+            instance = State()
+        if arg == "BaseModel":
+            instance = BaseModel()
         instance.save()
         print(instance.id)
 
-    def do_show(self, inp):
+    def do_show(self, arg):
         """Prints the string representation of an instance
           based on the class name and id"""
-        try:
-            if not inp:
-                raise SyntaxError()
-            args = inp.split(" ")
-            if args[0] not in self.models:
-                raise NameError()
-            if len(args) < 2:
-                raise IndexError()
-            objects = models.storage.all()
-            key = args[0] + '.' + args[1]
-            if key in objects:
-                print(objects[key])
-            else:
-                raise KeyError()
-        except SyntaxError:
+        if len(arg) == 0:
             print("** class name missing **")
-        except NameError:
+        args = arg.split(" ")
+        if args[0] not in self.models:
             print("** class doesn't exist **")
-        except IndexError:
-            print("** instance id missing **")
-        except KeyError:
-            print("** no instance found **")
-
-    def do_destroy(self, inp):
-        """Deletes an instance based on the class name and id"""
-        try:
-            if not inp:
-                raise SyntaxError()
-            args = inp.split(" ")
-            if args[0] not in self.models:
-                raise NameError()
-            if len(args) < 2:
-                raise IndexError()
-            objects = models.storage.all()
-            key = args[0] + '.' + args[1]
-            if key in objects:
-                del objects[key]
-                models.storage.save()
-            else:
-                raise KeyError()
-        except SyntaxError:
-            print("** class name missing **")
-        except NameError:
-            print("** class doesn't exist **")
-        except IndexError:
-            print("** instance id missing **")
-        except KeyError:
-            print("** no instance found **")
-
-    @classmethod
-    def class_verification(cls, args):
-        if len(args) == 0:
-            print("** class name missing **")
-            return False
-        if args[0] not in cls.models:
-            print("** class doesn't exist **")
-            return False
-        return True
-
-    @staticmethod
-    def id_verification(args):
         if len(args) < 2:
             print("** instance id missing **")
-            return False
         objects = models.storage.all()
-        string = str(args[0]) + '.' + str(args[1])
-        if string not in objects.keys():
-            print("** no instance found **")
-            return False
-        return True
+        key = args[0] + '.' + args[1]
+        if key in objects:
+            print(objects[key])
+            return
+        print("** no instance found **")
+        return
+        
+    def do_destroy(self, arg):
+        """Deletes an instance based on the class name and id"""
+        args = arg.split(" ")
+        if args[0] not in self.models:
+            print("** class doesn't exist **") 
+        if len(args) < 2:
+            print("** instance id missing **")
+        objects = models.storage.all()
+        key = args[0] + '.' + args[1]
+        if key in objects:
+            del objects[key]
+            models.storage.save()
+            return
+        print("** no instance found **")
 
-    def do_all(self, inp):
+    def do_all(self, arg):
         """Prints all string representation of
         all instances based or not on the class name"""
-        args = inp.split()
+        args = arg.split(" ")
         result = []
         objects = models.storage.all()
         if len(args) == 0:
@@ -139,19 +108,16 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         print(result)
 
-    def do_update(self, line):
+    def do_update(self, arg):
         """ Updates an instance based on the class name and
           id by adding or updating attribute"""
-        act = ""
-        for argv in line.split(','):
-            act = act + argv
-        args = shlex.split(act)
-        if not self.class_verification(args):
-            return
-        if not self.id_verification(args):
-            return
-        if not self.attribute_verification(args):
-            return
+        args = arg.split(" ")
+        if len(args) == 0:
+            print("** class name missing **")
+        if args[0] not in self.models:
+            print("** class doesn't exist **")
+        if len(args) == 1:
+            print("** instance id missing **")
         all_objects = models.storage.all()
         for key, value in all_objects.items():
             object_name = value.__class__.__name__
@@ -165,16 +131,5 @@ class HBNBCommand(cmd.Cmd):
                     setattr(value, args[2], args[3])
                     models.storage.save()
                 return
-
-    @staticmethod
-    def attribute_verification(args):
-        """to verify attributes"""
-        if len(args) < 3:
-            print("** attribute name missing **")
-            return False
-        if len(args) < 4:
-            print("** value missing **")
-            return False
-        return True
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
