@@ -112,36 +112,24 @@ class HBNBCommand(cmd.Cmd):
         """ Updates an instance based on the class name and
           id by adding or updating attribute"""
         args = arg.split(" ")
-        if len(arg) == 0:
+        if len(args) == 0:
             print("** class name missing **")
-            return
-        if args[0] not in lst:
+        if args[0] not in self.models:
             print("** class doesn't exist **")
-            return
         if len(args) == 1:
             print("** instance id missing **")
-            return
-        x = models.storage.all()
-        to_upd = 0
-        for i in x.keys():
-            k = i.split(".")
-            if k[1] == args[1]:
-                to_upd = 1
-                f = i
-        if to_upd == 0:
-            print("** no instance found **")
-            return
-        if len(args) == 2:
-            print("** attribute name missing **")
-            return
-        if len(args) == 3:
-            print("** value missing **")
-            return
-        args = args[0] + " " + args[1]+" "+args[2]+" " + args[3]
-        args = args.split(" ")
-        k = x[f].__dict__
-        p = args[3].split("\"")
-        k[args[2]] = p[1]
-        x[f].save
+        all_objects = models.storage.all()
+        for key, value in all_objects.items():
+            object_name = value.__class__.__name__
+            object_id = value.id
+            if object_name == args[0] and object_id == args[1].strip('"'):
+                if len(args) == 2:
+                    print("** attribute name missing **")
+                elif len(args) == 3:
+                    print("** value missing **")
+                else:
+                    setattr(value, args[2], args[3])
+                    models.storage.save()
+                return
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
