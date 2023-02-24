@@ -18,7 +18,9 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """Defines methods and attributes of the console"""
     prompt = "(hbnb)"
-    models = ["BaseModel"]
+    models = ["BaseModel", "User",
+              "Amenity", "City", "Place",
+              "Review", "State"]
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -41,6 +43,18 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         if arg == "BaseModel":
             instance = BaseModel()
+        if arg == "User":
+            instance = User()
+        if arg == "City":
+            instance = City()
+        if arg == "Review":
+            instance = Review()
+        if arg == "Amenity":
+            instance = Amenity()
+        if arg == "Place":
+            instance = Place()
+        if arg == "State":
+            instance = State()
         instance.save()
         print(instance.id)
 

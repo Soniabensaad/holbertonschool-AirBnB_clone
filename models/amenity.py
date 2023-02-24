@@ -9,3 +9,5 @@ class Amenity(BaseModel):
     """Public class attributes:
         name: string - empty string"""
     name = ""
+    def __str__(self):
+        return (f"[Amenity] ({self.id}) {self.__dict__}")
