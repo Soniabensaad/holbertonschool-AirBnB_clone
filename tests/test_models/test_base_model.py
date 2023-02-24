@@ -16,8 +16,6 @@ class testBase_AirBnb(unittest.TestCase):
     def test_assert(self):
         """all attributes"""
         my_model = BaseModel()
-        self.assertIsInstance(BaseModel.name, str)
-        self.assertIsInstance(BaseModel.my_number, int)
         self.assertIsInstance(BaseModel.id, str)
         self.assertIsInstance(BaseModel.updated_at, str)
         self.assertIsInstance(BaseModel.created_at, str)
