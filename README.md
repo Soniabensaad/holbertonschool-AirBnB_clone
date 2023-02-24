@@ -10,8 +10,6 @@
 - [Known Bugs](#known-bugs)
 - [Collaborate](#collaborate)
 
-## Author Details
-1. *Wendy Munyasi - wendymunyasi@gmail.com*
 
 ##  Requirements
 *   Allowed editors: `vi`, `vim`, `emacs`.
