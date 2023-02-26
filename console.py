@@ -82,7 +82,7 @@ class HBNBCommand(cmd.Cmd):
         try:
             eval(args[0])
         except:
-            print("** class doesn't exist **")
+            print("** no instance found **")
         obj_dict = storage.all()
         key_id = args[0] + "." + args[1]
 
