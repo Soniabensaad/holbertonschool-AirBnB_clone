@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
             instance.save()
             print(instance.id)
         except:
-            print("** class doesn't exist **")
+            print("** no instance found ****")
 
     def do_show(self, arg):
         """Prints the string representation of an instance"""
@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
         try:
             eval(args[0])
         except:
-            print("** class doesn't exist **")
+            print("** no instance found ****")
 
         obj_dict = storage.all()
         key_id = args[0] + "." + args[1]
@@ -82,7 +82,7 @@ class HBNBCommand(cmd.Cmd):
         try:
             eval(args[0])
         except:
-            print("** class doesn't exist **")
+            print("** no instance found **")
         obj_dict = storage.all()
         key_id = args[0] + "." + args[1]
 
@@ -102,7 +102,7 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
 
         if args[0] not in theModels:
-            print("** class doesn't exist **")
+            print("** no instance found **")
         else:
             all_objs = storage.all()
             new_list = []
@@ -123,7 +123,7 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
 
         if args[0] not in theModels:
-            print("** class doesn't exist **")
+            print("** no instance found **")
         elif len(args) == 1:
             print("** instance id missing **")
         else:
