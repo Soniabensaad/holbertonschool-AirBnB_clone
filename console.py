@@ -112,6 +112,7 @@ class HBNBCommand(cmd.Cmd):
                 if obj_name == args[0]:
                     new_list += [val.__str__()]
             print(new_list)
+        
 
     def do_update(self, arg):
         """ Updates an instance based on the class name and id """
@@ -141,5 +142,17 @@ class HBNBCommand(cmd.Cmd):
                         storage.save()
                     return
             print("** no instance found **")
+        
+    def do_count(self, cls_name):
+        """retrieve the number of instances of a class:
+          <class name>.count()."""
+        count = 0
+        all_objs = storage.all()
+        for key, val in all_objs.items():
+            args = key.split('.')
+            if args[0] == cls_name:
+                count =count + 1
+        print(count)
+        
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
