@@ -1,13 +1,11 @@
 /*footer*/
 footer{
-    background-color: white;
+    background-color: #FFF;
     height: 60px;
     width: 100%;
-    border-top: 1px #CCCCCC;
+    border-top: 1px solid #CCCCCC;
+    line-height: 30px;
     position: fixed;
     bottom: 0%;
-}
-
-footer > p{
     text-align: center;
 }
