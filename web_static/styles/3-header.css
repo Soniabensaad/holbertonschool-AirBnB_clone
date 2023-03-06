@@ -1,0 +1,12 @@
+/*header*/
+header{
+    border-color: white;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px #CCCCCC;
+}
+.logo{
+    display: inline-block;
+	vertical-align: middle;
+	margin-left: 20px;
+}
