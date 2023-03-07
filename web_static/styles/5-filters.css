@@ -1,8 +1,8 @@
-.filter{
+.filters{
     background-color: white;
     height: 70px;
     width: 100%;
-    border:  #DDDDDD 1px solid;
+    border: 1px solid  #DDDDDD;
     border-radius: 4px;
     position: absolute;
     margin: auto;
@@ -50,6 +50,6 @@ button:hover{
 .locations h4, .amenities h4{
     font-weight: 400px;
     font-size: 14px;
-    color: #484848;
+    color: #8a8585;
     margin: 0px 0px 0px 20%;
 }
